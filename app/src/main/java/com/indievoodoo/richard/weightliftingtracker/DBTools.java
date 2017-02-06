@@ -2,6 +2,7 @@ package com.indievoodoo.richard.weightliftingtracker;
 
 import android.app.Application;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Environment;
@@ -19,13 +20,19 @@ public class DBTools extends SQLiteOpenHelper {
 
     public DBTools(Context applicationContext)
     {
-        super(applicationContext , "weightlifting.db" , null , 1);
+        super(applicationContext , "weightlifting.db3" , null , 1);
     }
 
     @Override
     public void onCreate(SQLiteDatabase database)
     {
-        String query = "CREATE TABLE Bench (WorkoutNo INTEGER PRIMARY KEY)";
+        //  "CREATE TABLE Bench (WorkoutNo INTEGER PRIMARY KEY)";
+
+        String query = "CREATE TABLE Bench (WorkoutNo INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, Bench1	INTEGER, Bench2	INTEGER, Bench3	INTEGER, BenchAMRAP	INTEGER, BenchWeight REAL)";
+
+        database.execSQL(query);
+
+        query = "CREATE TABLE Row (WorkoutNo INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, Row1 INTEGER, Row2	INTEGER, Row3	INTEGER, RowAMRAP	INTEGER, RowWeight REAL)";
 
         database.execSQL(query);
 
@@ -36,7 +43,10 @@ public class DBTools extends SQLiteOpenHelper {
     {
         try
         {
-            SQLiteDatabase dbe = SQLiteDatabase.openDatabase(Environment.getDataDirectory().getPath(), null, 0);
+            SQLiteDatabase dbe = SQLiteDatabase.openDatabase("//data/data/com.indievoodoo.richard.weightliftingtracker/databases/weightlifting.db3", null, 0);
+
+
+
             Log.d("opendb", "EXIST");
         }
         catch(Exception e) {

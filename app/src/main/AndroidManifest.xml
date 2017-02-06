@@ -19,6 +19,12 @@
             android:label="@string/app_name"
             android:name=".WorkoutOne" >
         </activity>
+        <activity
+            android:label="@string/app_name"
+            android:name=".SetUpWeights" >
+        </activity>
+
+
     </application>
 
 </manifest>

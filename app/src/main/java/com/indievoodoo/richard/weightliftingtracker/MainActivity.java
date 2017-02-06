@@ -23,10 +23,26 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        addButtonListner();
+        addStartButtonListner();
+        addSetUPButtonListner();
     }
 
-    public void addButtonListner()
+    private void addSetUPButtonListner()
+    {
+        final Context context = this;
+        Button button = (Button) findViewById(R.id.setWeightsScreenButtonID);
+        button.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0)
+            {
+                Intent intent = new Intent(context, SetUpWeights.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    public void addStartButtonListner()
     {
 
         final Context context = this;

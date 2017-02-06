@@ -14,9 +14,23 @@
     tools:context="com.indievoodoo.richard.weightliftingtracker.MainActivity">
 
 
-    <Button
-        android:text="Start Workout"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/startWorkout" />
+        android:layout_height="wrap_content">
+
+        <Button
+            android:text="SetUP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/setWeightsScreenButtonID"
+            android:layout_margin="25dp" />
+
+        <Button
+            android:text="Start Workout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/startWorkout" />
+    </LinearLayout>
+
 </RelativeLayout>

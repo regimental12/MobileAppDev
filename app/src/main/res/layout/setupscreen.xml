@@ -23,6 +23,57 @@
             android:layout_height="wrap_content"
             android:inputType="number"
             android:ems="10"
-            android:id="@+id/benchWeightInputID" />
+            android:id="@+id/benchTextInputID" />
+
     </GridLayout>
+
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <TextView
+            android:text="Row Weight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rowWeightInputID" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+
+            android:id="@+id/rowTextInputID" />
+
+    </GridLayout>
+
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/squatWeightInputID" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/squatTextInputID" />
+    </GridLayout>
+
+    <Button
+        android:text="Set Weights"
+        android:layout_height="wrap_content"
+        android:id="@+id/setWeightButton"
+        android:layout_width="wrap_content"
+        android:layout_row="1"
+        android:layout_column="1"
+        android:layout_gravity="center"/>
+
 </LinearLayout>

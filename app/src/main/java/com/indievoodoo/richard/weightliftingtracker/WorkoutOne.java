@@ -30,7 +30,8 @@ public class WorkoutOne extends Activity implements View.OnClickListener
     //private String m_Text = "";
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.workout_one);
 
