@@ -1,64 +1,72 @@
 package com.indievoodoo.richard.weightliftingtracker;
 
-import android.app.Application;
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.os.Environment;
 import android.util.Log;
 
-import java.io.File;
+import java.util.HashMap;
 
 /**
  * Created by Richard on 03/02/2017.
  */
 
-public class DBTools extends SQLiteOpenHelper {
-
-
-
-    public DBTools(Context applicationContext)
+public class DBTools extends SQLiteOpenHelper
+{
+    public DBTools(Context appContext)
     {
-        super(applicationContext , "weightlifting.db3" , null , 1);
+        super(appContext, "WeightLifting.db3", null, 1);
     }
 
     @Override
     public void onCreate(SQLiteDatabase database)
     {
-        //  "CREATE TABLE Bench (WorkoutNo INTEGER PRIMARY KEY)";
-
-        String query = "CREATE TABLE Bench (WorkoutNo INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, Bench1	INTEGER, Bench2	INTEGER, Bench3	INTEGER, BenchAMRAP	INTEGER, BenchWeight REAL)";
+        String query  = "CREATE TABLE Bench (benchWorkOutNo INTEGER PRIMARY KEY, Bench1 INTEGER, Bench2 INTEGER, Bench3 INTEGER, BenchAMRAP INTEGER, BenchWeight REAL )";
 
         database.execSQL(query);
-
-        query = "CREATE TABLE Row (WorkoutNo INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, Row1 INTEGER, Row2	INTEGER, Row3	INTEGER, RowAMRAP	INTEGER, RowWeight REAL)";
-
-        database.execSQL(query);
-
-        //testDB();
     }
-
-    public void testDB()
-    {
-        try
-        {
-            SQLiteDatabase dbe = SQLiteDatabase.openDatabase("//data/data/com.indievoodoo.richard.weightliftingtracker/databases/weightlifting.db3", null, 0);
-
-
-
-            Log.d("opendb", "EXIST");
-        }
-        catch(Exception e) {
-            Log.d("opendb", "NOT EXIST");
-        }
-    }
-
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion)
+    public void onUpgrade(SQLiteDatabase database, int i, int i1)
     {
-        sqLiteDatabase.execSQL("drop table if exists test1");
-        onCreate(sqLiteDatabase);
+        String query = "DROP TABLE IF EXISTS Bench";
+
+        database.execSQL(query);
+        onCreate(database);
+
+    }
+
+    public void setweights(String a)
+    {
+        String result = " ";
+
+        SQLiteDatabase database = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+
+        values.put("BenchWeight" , a);
+
+        database.insert("Bench" , null , values);
+
+        database.close();
+    }
+
+    public float getweights()
+    {
+        float result = 0;
+        SQLiteDatabase database = this.getReadableDatabase();
+
+        final String selectQuery = "SELECT * FROM Bench";
+
+        Cursor cursor = database.rawQuery(selectQuery, null);
+
+        if(cursor.moveToLast())
+        {
+            result = cursor.getFloat(5);
+        }
+        database.close();
+        return result;
     }
 }

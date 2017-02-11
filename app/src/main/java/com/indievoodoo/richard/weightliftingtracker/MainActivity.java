@@ -25,6 +25,9 @@ public class MainActivity extends AppCompatActivity
 
         addStartButtonListner();
         addSetUPButtonListner();
+
+        db.getWritableDatabase();
+        db.close();
     }
 
     private void addSetUPButtonListner()

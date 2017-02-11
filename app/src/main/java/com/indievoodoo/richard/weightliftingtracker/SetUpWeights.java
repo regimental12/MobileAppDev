@@ -8,6 +8,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+
+import java.util.HashMap;
 
 /**
  * Created by Richard on 03/02/2017.
@@ -15,7 +18,11 @@ import android.widget.Button;
 
 public class SetUpWeights extends AppCompatActivity
 {
-    DBTools dbTools;
+    DBTools dbTools = new DBTools(this);
+
+    EditText Bench;
+    EditText Row;
+    EditText Squat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -25,8 +32,14 @@ public class SetUpWeights extends AppCompatActivity
 
         AddButtonListner();
 
-        dbTools = new DBTools(this);
+
         dbTools.getWritableDatabase();
+
+        Bench = (EditText) findViewById(R.id.benchTextInputID);
+        Row = (EditText) findViewById(R.id.rowTextInputID);
+        Squat = (EditText) findViewById(R.id.squatTextInputID);
+
+        Bench.setText(Float.toString(dbTools.getweights()));
     }
 
     private void AddButtonListner()
@@ -41,8 +54,15 @@ public class SetUpWeights extends AppCompatActivity
                 // TODO set weight in database. display toast on success?
                 //dbTools.testDB();
 
+                dbTools.setweights(Bench.getText().toString());
+
             }
         });
+    }
+
+    private void addWeights()
+    {
+
     }
 
 
