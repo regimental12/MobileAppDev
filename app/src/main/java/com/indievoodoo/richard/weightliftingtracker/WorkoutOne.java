@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import java.io.Console;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -66,6 +67,13 @@ public class WorkoutOne extends Activity implements View.OnClickListener
         benchWeight  = (TextView) findViewById(R.id.benchWeight);
         rowWeight  = (TextView) findViewById(R.id.rowWeight);
         squatWeight  = (TextView) findViewById(R.id.squatWeight);
+
+        ArrayList<Float> textVeiwRes = new ArrayList<>();
+        textVeiwRes = dbTools.getweights();
+
+        benchWeight.setText(textVeiwRes.get(0).toString());
+        rowWeight.setText(textVeiwRes.get(1).toString());
+        squatWeight.setText(textVeiwRes.get(2).toString());
 
     }
 
