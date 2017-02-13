@@ -2,6 +2,7 @@ package com.indievoodoo.richard.weightliftingtracker;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -103,5 +104,38 @@ public class DBTools extends SQLiteOpenHelper
 
         database.close();
         return result;
+    }
+
+    public void addWorkOut(HashMap<String , Integer> setDones , HashMap<String , String> Amrap , HashMap<String , Float> Weights)
+    {
+        SQLiteDatabase database = this.getWritableDatabase();
+
+        ContentValues Bvalues = new ContentValues();
+        ContentValues Rvalues = new ContentValues();
+        ContentValues Svalues = new ContentValues();
+
+        Bvalues.put("Bench1" , setDones.get("Bench1"));
+        Bvalues.put("Bench2" , setDones.get("Bench2"));
+        Bvalues.put("Bench3" , setDones.get("Bench3"));
+        Bvalues.put("BenchAMRAP" , Amrap.get("BenchAMRAP"));
+        Bvalues.put("BenchWeight" , Weights.get("Bench"));
+
+        Rvalues.put("Row1" , setDones.get("Row1"));
+        Rvalues.put("Row2" , setDones.get("Row2"));
+        Rvalues.put("Row3" , setDones.get("Row3"));
+        Rvalues.put("RowAMRAP" , Amrap.get("RowAMRAP"));
+        Rvalues.put("RowWeight" , Weights.get("Row"));
+
+        Svalues.put("Squat1" , setDones.get("Squat1"));
+        Svalues.put("Squat2" , setDones.get("Squat2"));
+        Svalues.put("Squat3" , setDones.get("Squat3"));
+        Svalues.put("SquatAMRAP" , Amrap.get("SquatAMRAP"));
+        Svalues.put("SquatWeight" , Weights.get("Squat"));
+
+        database.insert("Bench" , null , Bvalues);
+        database.insert("Row" , null , Rvalues);
+        database.insert("Squat" , null , Svalues);
+
+        database.close();
     }
 }

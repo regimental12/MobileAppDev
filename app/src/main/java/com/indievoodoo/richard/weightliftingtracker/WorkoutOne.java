@@ -24,8 +24,9 @@ public class WorkoutOne extends Activity implements View.OnClickListener
 {
     DBTools dbTools = new DBTools(this);
 
-    HashMap<Integer , Integer> setsDone = new HashMap<Integer, Integer>();
-    HashMap<Integer , String> Amrap = new HashMap<Integer, String>();
+    HashMap<String , Integer> setsDone = new HashMap<String, Integer>();
+    HashMap<String , String> Amrap = new HashMap<String, String>();
+    HashMap<String, Float> Weights = new HashMap<>();
     TextView benchWeight, rowWeight, squatWeight;
 
     //private String m_Text = "";
@@ -36,21 +37,21 @@ public class WorkoutOne extends Activity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.workout_one);
 
-        setsDone.put(R.id.bench1 , 0);
-        setsDone.put(R.id.bench2 , 0);
-        setsDone.put(R.id.bench3 , 0);
+        setsDone.put("Bench1" , 0);
+        setsDone.put("Bench2" , 0);
+        setsDone.put("Bench3" , 0);
 
-        setsDone.put(R.id.row1 , 0);
-        setsDone.put(R.id.row2 , 0);
-        setsDone.put(R.id.row3 , 0);
+        setsDone.put("Row1" , 0);
+        setsDone.put("Row2" , 0);
+        setsDone.put("Row3" , 0);
 
-        setsDone.put(R.id.squat1 , 0);
-        setsDone.put(R.id.squat2 , 0);
-        setsDone.put(R.id.squat3 , 0);
+        setsDone.put("Squat1" , 0);
+        setsDone.put("Squat2" , 0);
+        setsDone.put("Squat3" , 0);
 
-        Amrap.put(R.id.bench3 , "0");
-        Amrap.put(R.id.row3 , "0");
-        Amrap.put(R.id.squat3 , "0");
+        Amrap.put("BenchAMRAP" , "0");
+        Amrap.put("RowAMRAP" , "0");
+        Amrap.put("SquatAMRAP" , "0");
 
         ((Button)findViewById(R.id.bench1)).setOnClickListener(this);
         ((Button)findViewById(R.id.bench2)).setOnClickListener(this);
@@ -71,9 +72,12 @@ public class WorkoutOne extends Activity implements View.OnClickListener
         ArrayList<Float> textVeiwRes = new ArrayList<>();
         textVeiwRes = dbTools.getweights();
 
-        benchWeight.setText(textVeiwRes.get(0).toString());
-        rowWeight.setText(textVeiwRes.get(1).toString());
-        squatWeight.setText(textVeiwRes.get(2).toString());
+        if (!textVeiwRes.isEmpty())
+        {
+            benchWeight.setText(textVeiwRes.get(0).toString());
+            rowWeight.setText(textVeiwRes.get(1).toString());
+            squatWeight.setText(textVeiwRes.get(2).toString());
+        }
 
     }
 
@@ -84,55 +88,68 @@ public class WorkoutOne extends Activity implements View.OnClickListener
         switch (view.getId())
         {
             case R.id.bench1:
-                setDone(view.getId());
+                setDone("Bench1");
                 break;
 
             case R.id.bench2:
-                setDone(view.getId());
+                setDone("Bench2");
                 break;
 
             case R.id.bench3:
-                setDone(view.getId());
-                AMRAP(view.getId());
+                setDone("bench3");
+                AMRAP("Bench3");
                 break;
 
             case R.id.row1:
-                setDone(view.getId());
+                setDone("Row1");
                 break;
 
             case R.id.row2:
-                setDone(view.getId());
+                setDone("Row2");
                 break;
 
             case R.id.row3:
-                setDone(view.getId());
-                AMRAP(view.getId());
+                setDone("Row3");
+                AMRAP("Row3");
                 break;
 
             case R.id.squat1:
-                setDone(view.getId());
+                setDone("Squat1");
                 break;
 
             case R.id.squat2:
-                setDone(view.getId());
+                setDone("Squat2");
                 break;
 
             case R.id.squat3:
-                setDone(view.getId());
-                AMRAP(view.getId());
+                setDone("Squat3");
+                AMRAP("Squat3");
                 break;
 
-
+            case R.id.finishButtonID:
+                FinishButton();
+                break;
         }
     }
 
-    private void setDone(final int Key)
+    private void FinishButton()
+    {
+        // send info to database.
+        Weights.put("Bench" , Float.parseFloat(benchWeight.getText().toString()));
+        Weights.put("Row" , Float.parseFloat(rowWeight.getText().toString()));
+        Weights.put("Squat" , Float.parseFloat(squatWeight.getText().toString()));
+        dbTools.addWorkOut(setsDone, Amrap , Weights);
+
+        // TODO send user back to main screen.
+    }
+
+    private void setDone(final String Key)
     {
         setsDone.put(Key , 1);
         //Log.d("Button clicked" , Key + " " +  setsDone.get(Key).toString());
     }
 
-    private void AMRAP(final int Key)
+    private void AMRAP(final String Key)
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Enter Number Of Reps");
