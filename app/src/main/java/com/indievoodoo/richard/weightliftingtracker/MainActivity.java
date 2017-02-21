@@ -25,9 +25,25 @@ public class MainActivity extends AppCompatActivity
 
         addStartButtonListner();
         addSetUPButtonListner();
+        addChartButtonListner();
 
         db.getWritableDatabase();
         db.close();
+    }
+
+    private void addChartButtonListner()
+    {
+        final Context context = this;
+        Button button = (Button) findViewById(R.id.Chart_Button);
+        button.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0)
+            {
+                Intent intent = new Intent(context, ChartActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void addSetUPButtonListner()
