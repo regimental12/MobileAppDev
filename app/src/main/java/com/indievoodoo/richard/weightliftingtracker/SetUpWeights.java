@@ -17,6 +17,8 @@ import java.util.HashMap;
  * Created by Richard on 03/02/2017.
  */
 
+// TODO add the second day weights to setup.
+
 public class SetUpWeights extends AppCompatActivity
 {
     DBTools dbTools = new DBTools(this);
@@ -68,11 +70,6 @@ public class SetUpWeights extends AppCompatActivity
                 dbTools.setweights(Bench.getText().toString() , Row.getText().toString() , Squat.getText().toString());
             }
         });
-    }
-
-    private void addWeights()
-    {
-
     }
 
 

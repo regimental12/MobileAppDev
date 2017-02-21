@@ -2,18 +2,23 @@ package com.indievoodoo.richard.weightliftingtracker;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 /**
  * Created by Richard on 03/02/2017.
  */
+
+// TODO getweights for graphs
+
 
 public class DBTools extends SQLiteOpenHelper
 {
@@ -138,4 +143,58 @@ public class DBTools extends SQLiteOpenHelper
 
         database.close();
     }
+
+    public ArrayList<Graphresult> getWeightsForGraph()
+    {
+        ArrayList<Graphresult> results = new ArrayList<>();
+
+        SQLiteDatabase database = this.getReadableDatabase();
+
+        final String BselectQuery = "SELECT * FROM Bench";
+        Cursor Bcursor = database.rawQuery(BselectQuery, null);
+        if(Bcursor.moveToFirst())
+        {
+            do{
+                Graphresult graphresult = new Graphresult(Bcursor.getInt(0) , Bcursor.getInt(4) , Bcursor.getFloat(5));
+
+                results.add(graphresult);
+
+            } while(Bcursor.moveToNext());
+
+        }
+        Bcursor.close();
+
+        return results;
+    }
+
 }
+
+// RowWorkOutNo INTEGER PRIMARY KEY, Row1 INTEGER, Row2 INTEGER, Row3 INTEGER, RowAMRAP INTEGER, RowWeight REAL
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -140,7 +140,7 @@ public class WorkoutOne extends Activity implements View.OnClickListener
         Weights.put("Squat" , Float.parseFloat(squatWeight.getText().toString()));
         dbTools.addWorkOut(setsDone, Amrap , Weights);
 
-        // TODO send user back to main screen.
+        // TODO signal success and send user back to main screen.
     }
 
     private void setDone(final String Key)

@@ -13,6 +13,9 @@ import android.widget.Button;
 
 import static android.R.attr.button;
 
+
+// TODO cycle through workouts to send user to the right one.
+
 public class MainActivity extends AppCompatActivity
 {
     DBTools db = new DBTools(this);
