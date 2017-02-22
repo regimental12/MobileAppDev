@@ -1,6 +1,5 @@
 package com.indievoodoo.richard.weightliftingtracker;
 
-import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -8,35 +7,18 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-
-import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.components.YAxis;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.LineData;
-import com.github.mikephil.charting.data.LineDataSet;
-
-import java.util.ArrayList;
-
-import static android.graphics.Color.RED;
-import static android.graphics.Color.WHITE;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link BenchFrag.OnFragmentInteractionListener} interface
+ * {@link SquatFrag.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link BenchFrag#newInstance} factory method to
+ * Use the {@link SquatFrag#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class BenchFrag extends Fragment
+public class SquatFrag extends Fragment
 {
-
-    LineChart lChart1;
-
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -48,7 +30,7 @@ public class BenchFrag extends Fragment
 
     private OnFragmentInteractionListener mListener;
 
-    public BenchFrag()
+    public SquatFrag()
     {
         // Required empty public constructor
     }
@@ -59,12 +41,12 @@ public class BenchFrag extends Fragment
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment BenchFrag.
+     * @return A new instance of fragment SquatFrag.
      */
     // TODO: Rename and change types and number of parameters
-    public static BenchFrag newInstance(String param1, String param2)
+    public static SquatFrag newInstance(String param1, String param2)
     {
-        BenchFrag fragment = new BenchFrag();
+        SquatFrag fragment = new SquatFrag();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -88,52 +70,8 @@ public class BenchFrag extends Fragment
                              Bundle savedInstanceState)
     {
         // Inflate the layout for this fragment
-        View v =  inflater.inflate(R.layout.fragment_bench, container, false);
-
-        LinearLayout layout1 = (LinearLayout) v.findViewById(R.id.BenchFragLin);
-        lChart1 = new LineChart(getActivity().getApplicationContext());
-
-
-        // add chart to layout1
-        layout1.addView(lChart1);
-
-        ViewGroup.LayoutParams params = lChart1.getLayoutParams();
-        params.height = ViewGroup.LayoutParams.MATCH_PARENT;
-        params.width = ViewGroup.LayoutParams.MATCH_PARENT;
-
-        lChart1.setGridBackgroundColor(WHITE);
-        lChart1.setDrawGridBackground(false);
-        addWeights();
-
-        return v;
+        return inflater.inflate(R.layout.fragment_squat, container, false);
     }
-
-    private void addWeights()
-    {
-        DBTools dbtools = new DBTools(getActivity().getApplicationContext());
-        ArrayList<Graphresult> graphresults = dbtools.getWeightsForGraph();
-
-        ArrayList<Entry> xVals = new ArrayList<>();
-
-        for (int i = 0 ; i < graphresults.size() ; i++)
-        {
-            xVals.add(new Entry(i ,graphresults.get(i).getWeight()));
-        }
-
-        LineDataSet xDataSet = new LineDataSet(xVals , "Weight");
-        xDataSet.setAxisDependency(YAxis.AxisDependency.RIGHT);
-        xDataSet.setColor(RED);
-        xDataSet.setDrawCircles(false);
-        xDataSet.setLineWidth(2.0f);
-
-        LineData data = new LineData(xDataSet);
-
-        lChart1.setData(data);
-
-        lChart1.invalidate();
-    }
-
-
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri)

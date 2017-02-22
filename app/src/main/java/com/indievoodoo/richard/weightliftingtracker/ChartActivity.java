@@ -1,10 +1,13 @@
 package com.indievoodoo.richard.weightliftingtracker;
 
 import android.graphics.Color;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentActivity;
+//import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
@@ -29,7 +32,7 @@ import static android.graphics.Color.WHITE;
 // TODO format graph better.
 // TODO Create tabed layout1 for each graph.
 
-public class ChartActivity extends FragmentActivity
+public class ChartActivity extends AppCompatActivity
 {
     LinearLayout layout1;
     LineChart lChart1;
@@ -42,9 +45,39 @@ public class ChartActivity extends FragmentActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chart);
 
-        // setup layout1 and chart
-        layout1 = (LinearLayout) findViewById(R.id.chart_lin);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+        tabLayout.addTab(tabLayout.newTab().setText("Tab 1"));
+        tabLayout.addTab(tabLayout.newTab().setText("Tab 2"));
+        tabLayout.addTab(tabLayout.newTab().setText("Tab 3"));
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+
+        final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
+        final PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+        viewPager.setAdapter(adapter);
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
+
+        // setup layout1 and chart
+        /*layout1 = (LinearLayout) findViewById(R.id.BenchFragLin);
         lChart1 = new LineChart(this);
 
 
@@ -57,7 +90,7 @@ public class ChartActivity extends FragmentActivity
 
         lChart1.setGridBackgroundColor(WHITE);
         lChart1.setDrawGridBackground(false);
-        addWeights();
+        addWeights();*/
 
     }
 
