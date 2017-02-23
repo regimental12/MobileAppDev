@@ -7,6 +7,18 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+
+import java.util.ArrayList;
+
+import static android.graphics.Color.RED;
+import static android.graphics.Color.WHITE;
 
 
 /**
@@ -19,6 +31,8 @@ import android.view.ViewGroup;
  */
 public class SquatFrag extends Fragment
 {
+    LineChart lChart1;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -69,8 +83,49 @@ public class SquatFrag extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_squat, container, false);
+    View v =  inflater.inflate(R.layout.fragment_bench, container, false);
+
+    LinearLayout layout1 = (LinearLayout) v.findViewById(R.id.BenchFragLin);
+    lChart1 = new LineChart(getActivity().getApplicationContext());
+
+
+    // add chart to layout1
+    layout1.addView(lChart1);
+
+    ViewGroup.LayoutParams params = lChart1.getLayoutParams();
+    params.height = ViewGroup.LayoutParams.MATCH_PARENT;
+    params.width = ViewGroup.LayoutParams.MATCH_PARENT;
+
+    lChart1.setGridBackgroundColor(WHITE);
+    lChart1.setDrawGridBackground(false);
+    addWeights();
+
+    return v;
+}
+
+    private void addWeights()
+    {
+        DBTools dbtools = new DBTools(getActivity().getApplicationContext());
+        ArrayList<Graphresult> graphresults = dbtools.getWeightsForGraph("Squat");
+
+        ArrayList<Entry> xVals = new ArrayList<>();
+
+        for (int i = 0 ; i < graphresults.size() ; i++)
+        {
+            xVals.add(new Entry(i ,graphresults.get(i).getWeight()));
+        }
+
+        LineDataSet xDataSet = new LineDataSet(xVals , "Squat weight");
+        xDataSet.setAxisDependency(YAxis.AxisDependency.RIGHT);
+        xDataSet.setColor(RED);
+        xDataSet.setDrawCircles(false);
+        xDataSet.setLineWidth(2.0f);
+
+        LineData data = new LineData(xDataSet);
+
+        lChart1.setData(data);
+
+        lChart1.invalidate();
     }
 
     // TODO: Rename method, update argument and hook method into UI event

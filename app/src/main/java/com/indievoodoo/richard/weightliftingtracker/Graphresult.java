@@ -12,11 +12,4 @@ public class Graphresult
     int workoutNo;
     int Amrap;
     float weight;
-
-    /*public Graphresult(int wn , int a , float w)
-    {
-        workoutNo = wn;
-        Amrap = a;
-        weight = w;
-    }*/
 }

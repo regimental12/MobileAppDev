@@ -5,6 +5,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentActivity;
 //import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -45,13 +46,13 @@ public class ChartActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chart);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        android.app.ActionBar toolbar = getActionBar(); //(Toolbar) findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        tabLayout.addTab(tabLayout.newTab().setText("Tab 1"));
-        tabLayout.addTab(tabLayout.newTab().setText("Tab 2"));
-        tabLayout.addTab(tabLayout.newTab().setText("Tab 3"));
+        tabLayout.addTab(tabLayout.newTab().setText("Bench"));
+        tabLayout.addTab(tabLayout.newTab().setText("Row"));
+        tabLayout.addTab(tabLayout.newTab().setText("Squat"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
@@ -94,7 +95,7 @@ public class ChartActivity extends AppCompatActivity
 
     }
 
-    private void addWeights()
+   /* private void addWeights()
     {
         DBTools dbtools = new DBTools(this);
         ArrayList<Graphresult> graphresults = dbtools.getWeightsForGraph();
@@ -117,7 +118,7 @@ public class ChartActivity extends AppCompatActivity
         lChart1.setData(data);
 
         lChart1.invalidate();
-    }
+    }*/
 
 
 

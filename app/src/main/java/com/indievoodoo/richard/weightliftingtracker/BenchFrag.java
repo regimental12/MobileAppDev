@@ -111,7 +111,7 @@ public class BenchFrag extends Fragment
     private void addWeights()
     {
         DBTools dbtools = new DBTools(getActivity().getApplicationContext());
-        ArrayList<Graphresult> graphresults = dbtools.getWeightsForGraph();
+        ArrayList<Graphresult> graphresults = dbtools.getWeightsForGraph("Bench");
 
         ArrayList<Entry> xVals = new ArrayList<>();
 
@@ -120,7 +120,7 @@ public class BenchFrag extends Fragment
             xVals.add(new Entry(i ,graphresults.get(i).getWeight()));
         }
 
-        LineDataSet xDataSet = new LineDataSet(xVals , "Weight");
+        LineDataSet xDataSet = new LineDataSet(xVals , "Bench Weight");
         xDataSet.setAxisDependency(YAxis.AxisDependency.RIGHT);
         xDataSet.setColor(RED);
         xDataSet.setDrawCircles(false);

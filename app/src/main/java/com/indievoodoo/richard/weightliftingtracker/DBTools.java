@@ -144,13 +144,13 @@ public class DBTools extends SQLiteOpenHelper
         database.close();
     }
 
-    public ArrayList<Graphresult> getWeightsForGraph()
+    public ArrayList<Graphresult> getWeightsForGraph(String s)
     {
         ArrayList<Graphresult> results = new ArrayList<>();
 
         SQLiteDatabase database = this.getReadableDatabase();
 
-        final String BselectQuery = "SELECT * FROM Bench";
+        final String BselectQuery = "SELECT * FROM " + s;
         Cursor Bcursor = database.rawQuery(BselectQuery, null);
         if(Bcursor.moveToFirst())
         {
