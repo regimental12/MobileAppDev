@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:id="@+id/coordinatorLayout"
+    >
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
@@ -10,168 +19,260 @@
     android:weightSum="1">
 
 
-    <GridLayout
+    <TableLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_weight="0.18">
+        android:layout_weight="0.18"
+        android:columnCount="3"
+        android:stretchColumns="0,1,2">
+        <TableRow android:layout_width="wrap_content"
+                  android:layout_height="wrap_content">
+            <TextView
+                android:text="Bench Press"
+                android:layout_width="0dip"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:id="@+id/benchPressID"
+                android:fontFamily="sans-serif-smallcaps"
+                android:textAlignment="center"/>
 
-        <TextView
-            android:text="Bench Press"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/benchPressID"
-            android:fontFamily="sans-serif-smallcaps" />
+            <TextView
+                android:text="0.0 kg"
 
-        <Button
-            android:text="Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/bench1"
-            android:layout_row="1"
-            android:layout_column="0"
-            android:fontFamily="sans-serif-smallcaps" />
+                android:layout_height="wrap_content"
+                android:id="@+id/benchWeight"
+                android:layout_width="0dip"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif-smallcaps"
+                android:textAlignment="center"/>
+        </TableRow>
 
-        <Button
-            android:text="Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/bench2"
-            android:layout_row="1"
-            android:layout_column="1"
-            android:fontFamily="sans-serif-smallcaps" />
+        <TableRow android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:orientation="horizontal"
+                  android:layout_margin="10dp">
+            <ToggleButton
+                android:text="Set 1"
+                android:textSize="15sp"
+                android:id="@+id/bench1"
+                android:layout_width="0dip"
+                android:layout_weight="1"
+                android:background="@drawable/buttonshape"
+                android:layout_height="50dp"
+                android:fontFamily="sans-serif-smallcaps"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textColor="#ffffffff"
+                android:textOff="SET 1"
+                android:textOn="SET 1"/>
 
-        <Button
-            android:text="Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/bench3"
-            android:layout_row="1"
-            android:layout_column="2"
-            android:fontFamily="sans-serif-smallcaps" />
+            <ToggleButton
+                android:text="Set 2"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:id="@+id/bench2"
+                android:layout_width="0dip"
+                android:layout_weight="1"
+                android:background="@drawable/buttonshape"
+                android:layout_height="50dp"
+                android:fontFamily="sans-serif-smallcaps"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textOff="SET 2"
+                android:textOn="SET 2"/>
 
-        <TextView
-            android:text="0.0 kg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/benchWeight"
-            android:layout_row="0"
-            android:layout_column="2"
-            android:fontFamily="sans-serif-smallcaps" />
+            <ToggleButton
+                android:text="Set 3"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:id="@+id/bench3"
+                android:layout_width="0dip"
+                android:layout_weight="1"
+                android:background="@drawable/buttonshape"
+                android:fontFamily="sans-serif-smallcaps"
+                android:elevation="0dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textOff="SET 3"
+                android:textOn="SET 3"/>
+        </TableRow>
 
-    </GridLayout>
+    </TableLayout>
 
-    <GridLayout
+    <TableLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_weight="0.18">
+        android:layout_weight="0.18"
+        android:columnCount="3"
+        android:stretchColumns="0,1,2">
+        <TableRow android:layout_width="wrap_content"
+                  android:layout_height="wrap_content">
+            <TextView
+                android:text="Row"
+                android:layout_width="0dip"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:id="@+id/rowID"
+                android:fontFamily="sans-serif-smallcaps"
+                android:textAlignment="center"/>
 
-        <TextView
-            android:text="Row"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/rowID"
-            android:fontFamily="sans-serif-smallcaps" />
 
-        <Button
-            android:text="Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/row1"
-            android:layout_row="1"
-            android:layout_column="0"
-            android:fontFamily="sans-serif-smallcaps" />
+            <TextView
+                android:text="0.0 kg"
+                android:layout_height="wrap_content"
+                android:id="@+id/rowWeight"
+                android:layout_width="0dip"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif-smallcaps"
+                android:textAlignment="center"/>
+        </TableRow>
 
-        <Button
-            android:text="Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/row2"
-            android:layout_row="1"
-            android:layout_column="1"
-            android:fontFamily="sans-serif-smallcaps" />
+        <TableRow android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:orientation="horizontal"
+                  android:layout_margin="10dp">
+            <ToggleButton
+                android:text="Set 1"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:id="@+id/row1"
+                android:layout_width="0dip"
+                android:layout_weight="1"
+                android:background="@drawable/buttonshape"
+                android:layout_height="50dp"
+                android:fontFamily="sans-serif-smallcaps"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textOff="SET 1"
+                android:textOn="SET 1"/>
 
-        <Button
-            android:text="Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/row3"
-            android:layout_row="1"
-            android:layout_column="2"
-            android:fontFamily="sans-serif-smallcaps" />
+            <ToggleButton
+                android:text="Set 2"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:id="@+id/row2"
+                android:layout_width="0dip"
+                android:layout_weight="1"
+                android:background="@drawable/buttonshape"
+                android:layout_height="50dp"
+                android:fontFamily="sans-serif-smallcaps"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textOff="SET 2"
+                android:textOn="SET 2"/>
 
-        <TextView
-            android:text="0.0 kg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/rowWeight"
-            android:fontFamily="sans-serif-smallcaps"
-            android:layout_row="0"
-            android:layout_column="2" />
+            <ToggleButton
+                android:text="Set 3"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:id="@+id/row3"
+                android:layout_width="0dip"
+                android:layout_weight="1"
+                android:background="@drawable/buttonshape"
+                android:fontFamily="sans-serif-smallcaps"
+                android:elevation="0dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textOff="SET 3"
+                android:textOn="SET 3"/>
+        </TableRow>
 
-    </GridLayout>
+    </TableLayout>
 
-    <GridLayout
+    <TableLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_weight="0.19">
+        android:layout_weight="0.18"
+        android:columnCount="3"
+        android:stretchColumns="0,1,2">
+        <TableRow android:layout_width="wrap_content"
+                  android:layout_height="wrap_content">
+            <TextView
+                android:text="Squat"
+                android:layout_width="0dip"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:id="@+id/SquatID"
+                android:fontFamily="sans-serif-smallcaps"
+                android:textAlignment="center"/>
 
-        <TextView
-            android:text="Squat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/squatID"
-            android:fontFamily="sans-serif-smallcaps" />
 
-        <Button
-            android:text="Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/squat1"
-            android:layout_row="1"
-            android:layout_column="0"
-            android:fontFamily="sans-serif-smallcaps" />
+            <TextView
+                android:text="0.0 kg"
+                android:layout_height="wrap_content"
+                android:id="@+id/squatWeight"
+                android:layout_width="0dip"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif-smallcaps"
+                android:textAlignment="center"/>
+        </TableRow>
 
-        <Button
-            android:text="Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/squat2"
-            android:layout_row="1"
-            android:layout_column="1"
-            android:layout_weight="1"
-            android:fontFamily="sans-serif-smallcaps" />
+        <TableRow android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:orientation="horizontal"
+                  android:layout_margin="10dp">
+            <ToggleButton
+                android:text="Set 1"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:id="@+id/squat1"
+                android:layout_width="0dip"
+                android:layout_weight="1"
+                android:background="@drawable/buttonshape"
+                android:layout_height="50dp"
+                android:fontFamily="sans-serif-smallcaps"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textOff="SET 1"
+                android:textOn="SET 1"/>
 
-        <Button
-            android:text="Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/squat3"
-            android:layout_weight="1"
-            android:layout_row="1"
-            android:layout_column="2"
-            android:fontFamily="sans-serif-smallcaps" />
+            <ToggleButton
+                android:text="Set 2"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:id="@+id/squat2"
+                android:layout_width="0dip"
+                android:layout_weight="1"
+                android:background="@drawable/buttonshape"
+                android:layout_height="50dp"
+                android:fontFamily="sans-serif-smallcaps"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textOff="SET 2"
+                android:textOn="SET 2"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/squatWeight"
-            android:text="0.0 kg"
-            android:fontFamily="sans-serif-smallcaps"
-            android:layout_row="0"
-            android:layout_column="2" />
+            <ToggleButton
+                android:text="Set 3"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:id="@+id/squat3"
+                android:layout_width="0dip"
+                android:layout_weight="1"
+                android:background="@drawable/buttonshape"
+                android:fontFamily="sans-serif-smallcaps"
+                android:elevation="0dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textOff="SET 3"
+                android:textOn="SET 3"/>
+        </TableRow>
 
-    </GridLayout>
+    </TableLayout>
 
     <Button
         android:text="Finish"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:background="@drawable/buttonshapenormal"
+        android:textColor="#FFFFFF"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
         android:id="@+id/finishButtonID"
         android:layout_weight="0.18"
         android:fontFamily="sans-serif-smallcaps"
         android:textSize="20sp" />
 
 </LinearLayout>
+    </android.support.design.widget.CoordinatorLayout>

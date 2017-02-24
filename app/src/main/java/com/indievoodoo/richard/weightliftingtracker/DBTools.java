@@ -59,6 +59,8 @@ public class DBTools extends SQLiteOpenHelper
 
     }
 
+
+    //TODO stop duplicate entries.
     public void setweights(String a , String b , String c)
     {
         SQLiteDatabase database = this.getWritableDatabase();
@@ -168,8 +170,6 @@ public class DBTools extends SQLiteOpenHelper
     }
 
 }
-
-// RowWorkOutNo INTEGER PRIMARY KEY, Row1 INTEGER, Row2 INTEGER, Row3 INTEGER, RowAMRAP INTEGER, RowWeight REAL
 
 
 

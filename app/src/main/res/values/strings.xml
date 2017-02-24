@@ -1,6 +1,4 @@
 <resources>
     <string name="app_name">WeightLiftingTracker</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="setupscreen">Use this screen to set up the weights for first time use, or to make adjustments.</string>
 </resources>

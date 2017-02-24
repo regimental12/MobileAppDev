@@ -9,6 +9,7 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,6 +19,7 @@ import java.util.HashMap;
  */
 
 // TODO add the second day weights to setup.
+// TODO add info on how to use the setup screen. only use to setup first time. or to make adjustments to weights.
 
 public class SetUpWeights extends AppCompatActivity
 {
@@ -34,7 +36,6 @@ public class SetUpWeights extends AppCompatActivity
         setContentView(R.layout.setupscreen);
 
         AddButtonListner();
-
 
         dbTools.getWritableDatabase();
 
@@ -64,10 +65,12 @@ public class SetUpWeights extends AppCompatActivity
             @Override
             public void onClick(View arg0)
             {
-                // TODO set weight in database. display toast on success?
-                //dbTools.testDB();
-
                 dbTools.setweights(Bench.getText().toString() , Row.getText().toString() , Squat.getText().toString());
+
+                CharSequence text = "Weights Updated";
+                int duration = Toast.LENGTH_SHORT;
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
             }
         });
     }
