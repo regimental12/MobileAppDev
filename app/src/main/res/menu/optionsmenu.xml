@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="Export"
-        android:id="@+id/backUpMenuID" />
-    <item android:title="Restore"
-        android:id="@+id/restoreMenuID" />
+    <item
+        android:id="@+id/setupMenuID"
+        android:title="Set Up"/>
+
+    <item android:title="Help"
+          android:id="@+id/helpMenuId"/> <!--  TODO Help Memu-->
+
+    <item
+        android:id="@+id/aboutMenuID"
+        android:title="About"/>
 </menu>

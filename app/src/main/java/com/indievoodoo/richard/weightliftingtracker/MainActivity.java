@@ -2,16 +2,13 @@ package com.indievoodoo.richard.weightliftingtracker;
 
 import android.content.Context;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-
-import static android.R.attr.button;
 
 
 // TODO cycle through workouts to send user to the right one.
@@ -27,7 +24,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         addStartButtonListner();
-        addSetUPButtonListner();
+        //addSetUPButtonListner();
         addChartButtonListner();
 
         db.getWritableDatabase();
@@ -49,7 +46,7 @@ public class MainActivity extends AppCompatActivity
         });
     }
 
-    private void addSetUPButtonListner()
+    /*private void addSetUPButtonListner()
     {
         final Context context = this;
         Button button = (Button) findViewById(R.id.setWeightsScreenButtonID);
@@ -62,7 +59,7 @@ public class MainActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
-    }
+    }*/
 
     public void addStartButtonListner()
     {
@@ -86,4 +83,14 @@ public class MainActivity extends AppCompatActivity
         inflater.inflate(R.menu.optionsmenu, menu);
         return true;
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+
+        return MenuHandler.menuHandler(this , item);
+    }
+
+
+
 }

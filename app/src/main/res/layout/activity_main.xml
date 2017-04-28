@@ -24,16 +24,17 @@
             android:layout_height="wrap_content"
             android:id="@+id/Chart_Button"
             android:background="@drawable/buttonshapenormal"
-            android:textColor="@color/common_google_signin_btn_text_dark_default"/>
+            android:textColor="@color/common_google_signin_btn_text_dark_default"
+            android:layout_margin="50dp"/>
 
-        <Button
+        <!--<Button
             android:text="SetUP"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/setWeightsScreenButtonID"
             android:layout_margin="25dp"
             android:background="@drawable/buttonshapenormal"
-            android:textColor="@color/common_google_signin_btn_text_dark_default"/>
+            android:textColor="@color/common_google_signin_btn_text_dark_default"/>-->
 
         <Button
             android:text="Start Workout"
@@ -41,7 +42,9 @@
             android:layout_height="wrap_content"
             android:id="@+id/startWorkout"
             android:background="@drawable/buttonshapenormal"
-            android:textColor="@color/common_google_signin_btn_text_dark_default"/>
+            android:textColor="@color/common_google_signin_btn_text_dark_default"
+            android:layout_margin="50dp"
+            android:padding="10dp"/>
     </LinearLayout>
 
 </RelativeLayout>
