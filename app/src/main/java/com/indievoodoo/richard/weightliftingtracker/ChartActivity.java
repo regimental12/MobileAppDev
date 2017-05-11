@@ -46,6 +46,9 @@ public class ChartActivity extends AppCompatActivity
         tabLayout.addTab(tabLayout.newTab().setText("Bench"));
         tabLayout.addTab(tabLayout.newTab().setText("Row"));
         tabLayout.addTab(tabLayout.newTab().setText("Squat"));
+        tabLayout.addTab(tabLayout.newTab().setText("OHP"));
+        tabLayout.addTab(tabLayout.newTab().setText("ChinUp"));
+        tabLayout.addTab(tabLayout.newTab().setText("DeadLift"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);

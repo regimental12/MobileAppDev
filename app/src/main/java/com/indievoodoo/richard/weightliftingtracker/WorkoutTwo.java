@@ -22,21 +22,21 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
 import static android.graphics.Color.WHITE;
 
 /**
- * Created by Richard on 03/02/2017.
+ * Created by Richard on 28/04/2017.
  */
 
-// TODO dont auto add weight on non completion of sets.
-public class WorkoutOne extends AppCompatActivity implements View.OnClickListener
+public class WorkoutTwo extends AppCompatActivity implements View.OnClickListener
 {
     DBTools dbTools = new DBTools(this);
 
     HashMap<String , Integer> setsDone = new HashMap<String, Integer>();
     HashMap<String , String> Amrap = new HashMap<String, String>();
     HashMap<String, Float> Weights = new HashMap<>();
-    TextView benchWeight, rowWeight, squatWeight;
+    TextView OHPWeight, ChinUpWeight, DeadLiftWeight;
 
     public void firstTime()
     {
@@ -54,6 +54,7 @@ public class WorkoutOne extends AppCompatActivity implements View.OnClickListene
 
             // record the fact that the app has been started at least once
             settings.edit().putBoolean("my_first_time", false).commit();
+
         }
     }
 
@@ -62,42 +63,39 @@ public class WorkoutOne extends AppCompatActivity implements View.OnClickListene
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.workout_one);
+        setContentView(R.layout.workout_two);
 
-        setsDone.put("Bench1" , 0);
-        setsDone.put("Bench2" , 0);
-        setsDone.put("Bench3" , 0);
+        setsDone.put("OHP1" , 0);
+        setsDone.put("OHP2" , 0);
+        setsDone.put("OHP3" , 0);
 
-        setsDone.put("Row1" , 0);
-        setsDone.put("Row2" , 0);
-        setsDone.put("Row3" , 0);
+        setsDone.put("Chin1" , 0);
+        setsDone.put("Chin2" , 0);
+        setsDone.put("Chin3" , 0);
 
-        setsDone.put("Squat1" , 0);
-        setsDone.put("Squat2" , 0);
-        setsDone.put("Squat3" , 0);
+        setsDone.put("DeadLift1" , 0);
 
-        Amrap.put("BenchAMRAP" , "0");
-        Amrap.put("RowAMRAP" , "0");
-        Amrap.put("SquatAMRAP" , "0");
+        Amrap.put("OHPAMRAP" , "0");
+        Amrap.put("ChinAMRAP" , "0");
+        Amrap.put("DeadLiftAMRAP" , "0");
 
-        ((Button)findViewById(R.id.bench1)).setOnClickListener(this);
-        ((Button)findViewById(R.id.bench2)).setOnClickListener(this);
-        ((Button)findViewById(R.id.bench3)).setOnClickListener(this);
-        ((Button)findViewById(R.id.row1)).setOnClickListener(this);
-        ((Button)findViewById(R.id.row2)).setOnClickListener(this);
-        ((Button)findViewById(R.id.row3)).setOnClickListener(this);
-        ((Button)findViewById(R.id.squat1)).setOnClickListener(this);
-        ((Button)findViewById(R.id.squat2)).setOnClickListener(this);
-        ((Button)findViewById(R.id.squat3)).setOnClickListener(this);
+        ((Button)findViewById(R.id.OHP1)).setOnClickListener(this);
+        ((Button)findViewById(R.id.OHP2)).setOnClickListener(this);
+        ((Button)findViewById(R.id.OHP3)).setOnClickListener(this);
+        ((Button)findViewById(R.id.Chin1)).setOnClickListener(this);
+        ((Button)findViewById(R.id.Chin2)).setOnClickListener(this);
+        ((Button)findViewById(R.id.Chin3)).setOnClickListener(this);
+        ((Button)findViewById(R.id.DeadLift1)).setOnClickListener(this);
+
         ((Button)findViewById(R.id.finishButtonID)).setOnClickListener(this);
 
 
-        benchWeight  = (TextView) findViewById(R.id.benchWeight);
-        rowWeight  = (TextView) findViewById(R.id.rowWeight);
-        squatWeight  = (TextView) findViewById(R.id.squatWeight);
+        OHPWeight = (TextView) findViewById(R.id.OHPWeightID);
+        ChinUpWeight = (TextView) findViewById(R.id.ChinUPWeightID);
+        DeadLiftWeight = (TextView) findViewById(R.id.DeadLiftWeightID);
 
         ArrayList<Float> textVeiwRes = new ArrayList<>();
-        textVeiwRes = dbTools.getweights1();
+        textVeiwRes = dbTools.getweights2();
 
         final String PREFS_NAME = "MyPrefsFile";
         Context context = getApplicationContext();
@@ -112,9 +110,9 @@ public class WorkoutOne extends AppCompatActivity implements View.OnClickListene
             // first time task
             if (!textVeiwRes.isEmpty())
             {
-                benchWeight.setText(textVeiwRes.get(0).toString());
-                rowWeight.setText(textVeiwRes.get(1).toString());
-                squatWeight.setText(textVeiwRes.get(2).toString());
+                OHPWeight.setText(textVeiwRes.get(0).toString());
+                ChinUpWeight.setText(textVeiwRes.get(1).toString());
+                DeadLiftWeight.setText(textVeiwRes.get(2).toString());
             }
 
             // record the fact that the app has been started at least once
@@ -126,9 +124,9 @@ public class WorkoutOne extends AppCompatActivity implements View.OnClickListene
             float b = (float) (2.5 + textVeiwRes.get(1));
             float c = (float) (2.5 + textVeiwRes.get(2));
 
-            benchWeight.setText(String.valueOf(a));
-            rowWeight.setText(String.valueOf(b));
-            squatWeight.setText(String.valueOf(c));
+            OHPWeight.setText(String.valueOf(a));
+            ChinUpWeight.setText(String.valueOf(b));
+            DeadLiftWeight.setText(String.valueOf(c));
         }
     }
 
@@ -138,78 +136,62 @@ public class WorkoutOne extends AppCompatActivity implements View.OnClickListene
     {
         switch (view.getId())
         {
-            case R.id.bench1:
-                setDone("Bench1");
-                if (setsDone.get("Bench1") == 1)
+            case R.id.OHP1:
+                setDone("OHP1");
+                if (setsDone.get("OHP1") == 1)
                 {
                     countDown();
                 }
                 break;
 
-            case R.id.bench2:
-                setDone("Bench2");
-                if (setsDone.get("Bench2") == 1)
+            case R.id.OHP2:
+                setDone("OHP2");
+                if (setsDone.get("OHP2") == 1)
                 {
                     countDown();
                 }
                 break;
 
-            case R.id.bench3:
-                setDone("Bench3");
-                if (setsDone.get("Bench3") == 1)
+            case R.id.OHP3:
+                setDone("OHP3");
+                if (setsDone.get("OHP3") == 1)
                 {
                     countDown();
-                    AMRAP("Bench3");
+                    AMRAP("OHP3");
                 }
                 break;
 
-            case R.id.row1:
-                setDone("Row1");
-                if (setsDone.get("Row1") == 1)
-                {
-                    countDown();
-                }
-                break;
-
-            case R.id.row2:
-                setDone("Row2");
-                if (setsDone.get("Row2") == 1)
+            case R.id.Chin1:
+                setDone("Chin1");
+                if (setsDone.get("Chin1") == 1)
                 {
                     countDown();
                 }
                 break;
 
-            case R.id.row3:
-                setDone("Row3");
-                if (setsDone.get("Row3") == 1)
-                {
-                    countDown();
-                    AMRAP("Row3");
-                }
-                break;
-
-            case R.id.squat1:
-                setDone("Squat1");
-                if (setsDone.get("Squat1") == 1)
+            case R.id.Chin2:
+                setDone("Chin2");
+                if (setsDone.get("Chin2") == 1)
                 {
                     countDown();
                 }
                 break;
 
-            case R.id.squat2:
-                setDone("Squat2");
-                if (setsDone.get("Squat2") == 1)
+            case R.id.Chin3:
+                setDone("Chin3");
+                if (setsDone.get("Chin3") == 1)
                 {
                     countDown();
+                    AMRAP("Chin3");
                 }
                 break;
 
-            case R.id.squat3:
-                setDone("Squat3");
-                if (setsDone.get("Squat3") == 1)
+            case R.id.DeadLift1:
+                setDone("DeadLift1");
+                if (setsDone.get("DeadLift1") == 1)
                 {
                     countDown();
-                    AMRAP("Squat3");
+                    AMRAP("DeadLift1");
                 }
                 break;
 
@@ -218,14 +200,13 @@ public class WorkoutOne extends AppCompatActivity implements View.OnClickListene
                 break;
         }
     }
-
     public void countDown()
     {
         final Snackbar snackbar = Snackbar.make(findViewById(R.id.coordinatorLayout) , "" , 93000 ).setAction("CANCEL" ,new View.OnClickListener()
-                {
-                    @Override
-                    public void onClick(View v) { }
-                });
+        {
+            @Override
+            public void onClick(View v) { }
+        });
 
         snackbar.setActionTextColor(WHITE);
         Snackbar.SnackbarLayout layout = (Snackbar.SnackbarLayout) snackbar.getView();
@@ -255,10 +236,10 @@ public class WorkoutOne extends AppCompatActivity implements View.OnClickListene
     private void FinishButton()
     {
         // send info to database.
-        Weights.put("Bench" , Float.parseFloat(benchWeight.getText().toString()));
-        Weights.put("Row" , Float.parseFloat(rowWeight.getText().toString()));
-        Weights.put("Squat" , Float.parseFloat(squatWeight.getText().toString()));
-        dbTools.addWorkOut1(setsDone, Amrap , Weights);
+        Weights.put("OHP" , Float.parseFloat(OHPWeight.getText().toString()));
+        Weights.put("Chin" , Float.parseFloat(ChinUpWeight.getText().toString()));
+        Weights.put("DeadLift" , Float.parseFloat(DeadLiftWeight.getText().toString()));
+        dbTools.addWorkOut2(setsDone, Amrap , Weights);
 
         Context context = getApplicationContext();
 
@@ -267,9 +248,9 @@ public class WorkoutOne extends AppCompatActivity implements View.OnClickListene
         SharedPreferences.Editor editor = settings.edit();
         int i = settings.getInt("Workout No." , 0);
 
-        if(i == 0 || i == 2)
+        if(i == 0 || i == 1)
         {
-            editor.putInt("Workout No." , 1).commit();
+            editor.putInt("Workout No." , 2).commit();
         }
 
         CharSequence text = "Good Job!";
@@ -339,4 +320,5 @@ public class WorkoutOne extends AppCompatActivity implements View.OnClickListene
     {
         return MenuHandler.menuHandler(this , item);
     }
+
 }

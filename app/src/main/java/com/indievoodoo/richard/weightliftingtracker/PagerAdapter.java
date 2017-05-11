@@ -31,6 +31,15 @@ public class PagerAdapter extends FragmentStatePagerAdapter
             case 2:
                 SquatFrag sf = new SquatFrag();
                 return sf;
+            case 3:
+                OHPFrag of = new OHPFrag();
+                return  of;
+            case 4:
+                ChinFrag cf = new ChinFrag();
+                return  cf;
+            case 5:
+                DeadFrag df = new DeadFrag();
+                return df;
             default:
                 return null;
 

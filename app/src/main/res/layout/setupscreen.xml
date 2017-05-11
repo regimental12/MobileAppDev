@@ -80,6 +80,65 @@
             android:id="@+id/squatTextInputID" />
     </GridLayout>
 
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <TextView
+            android:id="@+id/OHPWeightInputID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="OHP Weight"/>
+
+        <EditText
+            android:id="@+id/OHPTextInputID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number"/>
+
+    </GridLayout>
+
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <TextView
+            android:id="@+id/ChipUPWeightInputID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ChinUp Weight"/>
+
+        <EditText
+            android:id="@+id/ChinUPTextInputID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number"/>
+
+    </GridLayout>
+
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <TextView
+            android:id="@+id/DeadLiftWeightInputID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DeadLift Weight"/>
+
+        <EditText
+            android:id="@+id/DeadLiftTextInputID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number"/>
+    </GridLayout>
+
     <Button
         android:text="Set Weights"
         android:layout_height="wrap_content"

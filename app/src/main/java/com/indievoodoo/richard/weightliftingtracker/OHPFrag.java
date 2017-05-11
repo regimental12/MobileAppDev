@@ -1,6 +1,5 @@
 package com.indievoodoo.richard.weightliftingtracker;
 
-import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -8,9 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.YAxis;
@@ -19,6 +16,7 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 
 import java.util.ArrayList;
+import java.util.zip.Inflater;
 
 import static android.graphics.Color.RED;
 import static android.graphics.Color.WHITE;
@@ -27,12 +25,12 @@ import static android.graphics.Color.WHITE;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link BenchFrag.OnFragmentInteractionListener} interface
+ * {@link OHPFrag.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link BenchFrag#newInstance} factory method to
+ * Use the {@link OHPFrag#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class BenchFrag extends Fragment
+public class OHPFrag extends Fragment
 {
 
     LineChart lChart1;
@@ -48,7 +46,7 @@ public class BenchFrag extends Fragment
 
     private OnFragmentInteractionListener mListener;
 
-    public BenchFrag()
+    public OHPFrag()
     {
         // Required empty public constructor
     }
@@ -59,12 +57,12 @@ public class BenchFrag extends Fragment
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment BenchFrag.
+     * @return A new instance of fragment OHPFrag.
      */
-
-    public static BenchFrag newInstance(String param1, String param2)
+    // TODO: Rename and change types and number of parameters
+    public static OHPFrag newInstance(String param1, String param2)
     {
-        BenchFrag fragment = new BenchFrag();
+        OHPFrag fragment = new OHPFrag();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -88,13 +86,11 @@ public class BenchFrag extends Fragment
                              Bundle savedInstanceState)
     {
         // Inflate the layout for this fragment
-        View v =  inflater.inflate(R.layout.fragment_bench, container, false);
+        View v = inflater.inflate(R.layout.fragment_oh, container, false);
 
-        LinearLayout layout1 = (LinearLayout) v.findViewById(R.id.BenchFragLin);
+        LinearLayout layout1 = (LinearLayout) v.findViewById(R.id.OHPFragLin);
         lChart1 = new LineChart(getActivity().getApplicationContext());
 
-
-        // add chart to layout1
         layout1.addView(lChart1);
 
         ViewGroup.LayoutParams params = lChart1.getLayoutParams();
@@ -103,15 +99,17 @@ public class BenchFrag extends Fragment
 
         lChart1.setGridBackgroundColor(WHITE);
         lChart1.setDrawGridBackground(false);
+
         addWeights();
 
-        return v;
+        return  v;
+
     }
 
     private void addWeights()
     {
         DBTools dbtools = new DBTools(getActivity().getApplicationContext());
-        ArrayList<Graphresult> graphresults = dbtools.getWeightsForGraph("Bench");
+        ArrayList<Graphresult> graphresults = dbtools.getWeightsForGraph("OHP");
 
         ArrayList<Entry> xVals = new ArrayList<>();
 
@@ -120,7 +118,7 @@ public class BenchFrag extends Fragment
             xVals.add(new Entry(i ,graphresults.get(i).getWeight()));
         }
 
-        LineDataSet xDataSet = new LineDataSet(xVals , "Bench Weight");
+        LineDataSet xDataSet = new LineDataSet(xVals , "OHP Weight");
         xDataSet.setAxisDependency(YAxis.AxisDependency.RIGHT);
         xDataSet.setColor(RED);
         xDataSet.setDrawCircles(false);
@@ -133,9 +131,7 @@ public class BenchFrag extends Fragment
         lChart1.invalidate();
     }
 
-
-
-
+    // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri)
     {
         if (mListener != null)
@@ -165,6 +161,7 @@ public class BenchFrag extends Fragment
      */
     public interface OnFragmentInteractionListener
     {
+        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 }
