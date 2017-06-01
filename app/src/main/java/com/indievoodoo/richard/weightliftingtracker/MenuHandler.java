@@ -21,10 +21,10 @@ public class MenuHandler extends AppCompatActivity
                 act.startActivity(new Intent(act , SetUpWeights.class));
                 return true;
             case R.id.aboutMenuID:
-                // TODO About menu.
+                act.startActivity(new Intent(act , About.class));
                 return true;
             case R.id.helpMenuId:
-                // TODO Help Menu.
+                act.startActivity(new Intent(act , HelpMenu.class));
                 return true;
             default:
                 return false;
