@@ -11,10 +11,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+
 public class MainActivity extends AppCompatActivity
 {
     DBTools db = new DBTools(this);
     int i = 0;
+    private AdView mAdView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -34,6 +39,11 @@ public class MainActivity extends AppCompatActivity
         SharedPreferences settings = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
         i = settings.getInt("Workout No." , 0);
+        MobileAds.initialize(this , "ca-app-pub-3940256099942544/6300978111");
+
+        mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
     }
 
     private void addChartButtonListner()
